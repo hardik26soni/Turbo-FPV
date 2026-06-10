@@ -29,7 +29,7 @@ Turbo-FPV is a DIY 5-inch FPV drone project built around the **Simplifly MK5 Pro
 | Flight Controller | F4 V3S Plus — OSD, 2–6S, 3A BEC, 9V Pad, Betaflight | ₹4,011 |
 | RC Receiver | ExpressLRS RX24T 2.4G | ₹1,375 |
 | Frame | Simplifly MK5 Pro FPV Digital Drone Frame | ₹4,499 |
-| Motors | RS2205 2300KV Brushless DC (×4, CW — Black Cap) | ₹2,864 |
+| Motors | RS2205 2300KV Brushless DC (×2 CW — Black Cap, x2 CCW — Silver Cap ) | ₹2,864 |
 | Propellers | Durga Enterprises 5-inch 3-Blade — 2 Pair (CW) | ₹349 |
 | Battery | KP 14.8V 1500mAh 65C LiPo (4S) | ₹2,497 |
 
