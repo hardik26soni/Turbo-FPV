@@ -16,9 +16,10 @@ Build reference: [YouTube](https://www.youtube.com/watch?v=BoLeQCqns5A&t=210s)
 
 ---
 
-## Parts
+## Parts(Bill of materials)
 
 | Component | Model | Price (INR) |
+|---|---|---|
 | RC Transmitter | FlySky CT6B 2.4GHz 6CH with FS-R6B Receiver | ₹3,464 |
 | Flight Controller | F4 V3S Plus — OSD, 2–6S, 3A BEC, 9V Pad, Betaflight | ₹4,011 |
 | RC Receiver | ExpressLRS RX24T 2.4G | ₹1,375 |
@@ -34,12 +35,11 @@ Build reference: [YouTube](https://www.youtube.com/watch?v=BoLeQCqns5A&t=210s)
 ## Getting it flying
 
 ### 1. Flash Betaflight
-```
+
 - Download [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases)
 - Connect FC via USB, go to Firmware Flasher
 - Target: `STM32F405` — do a full chip erase first on a new board
 - Flash latest stable release
-```
 
 ### 2. Configure the FC
 
@@ -88,6 +88,7 @@ Since I'm not using goggles, the FPV feed goes to my Android phone:
 ## Betaflight params to set
 
 | Parameter | Value | Why |
+|---|---|---|
 | Motor Protocol | DSHOT300 | Works well with RS2205 ESCs |
 | Min Throttle | 1030 | Stops motors from stalling |
 | Max Throttle | 2000 | Full power cap |
@@ -112,12 +113,14 @@ Since I'm not using goggles, the FPV feed goes to my Android phone:
 ## Arming and flight modes
 
 | Action | Stick input |
+|---|---|
 | Arm | Throttle low + Yaw right (hold 2s) |
 | Disarm | Throttle low + Yaw left (hold 2s) |
 | Angle mode | Switch SA up |
 | Acro mode | Switch SA down |
 
 | Mode | What it does |
+|---|---|
 | Angle | Self-levels — good for learning |
 | Acro | Full manual, no self-level |
 | Air Mode | Motors stay spinning at zero throttle |
@@ -139,6 +142,7 @@ Since I'm not using goggles, the FPV feed goes to my Android phone:
 ## Common issues
 
 | Problem | Fix |
+|---|---|
 | Motors not spinning | Check ESC signal wires, re-flash BLHeli, check motor protocol in Betaflight |
 | Flips on takeoff | Props on wrong motors or motor direction wrong — fix in Motors tab |
 | Noisy video feed | Check VTX antenna, switch channels, move away from 2.4GHz sources |
@@ -147,6 +151,15 @@ Since I'm not using goggles, the FPV feed goes to my Android phone:
 | RC not binding | Re-bind RX24T, check UART and Serial RX config in Betaflight |
 | OSD not showing | Enable OSD in Configuration tab, check camera wiring to FC |
 | Low battery alarm | Set warning in Betaflight OSD, verify voltage with multimeter |
+
+---
+
+## What's next
+
+- [ ] WiFi receiver option for iOS
+- [ ] GPS for Return-to-Home
+- [ ] PID tune for this specific motor + prop combo
+- [ ] Blackbox logging
 
 ---
 
