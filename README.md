@@ -1,205 +1,161 @@
 # 🚁 Turbo-FPV
 
-> A compact 5-inch FPV racing drone built for ~$190–$200, featuring Betaflight FC, long-range RC link, and FPV video transmission.
+A 5-inch FPV racing drone I'm building from scratch. Total cost is around ₹19,059. No goggles — video streams straight to my phone.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Firmware](https://img.shields.io/badge/Betaflight-4.x-orange)
-![Frame](https://img.shields.io/badge/frame-150mm%203inch-lightgrey)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 
 ---
 
-## Overview
+## What is this?
 
-Turbo-FPV is a DIY 5-inch FPV drone project built around the **Simplifly MK5 Pro** digital FPV frame. It uses a Betaflight-compatible F4 V3S flight controller, RS2205 2300KV brushless motors, and streams live FPV video to a **mobile device** — no FPV goggles required. The ExpressLRS RX24T receiver provides a reliable 2.4GHz RC link. Camera and VTX are to be integrated separately.
+Turbo-FPV is my DIY FPV drone build based on the Simplifly MK5 Pro frame. I'm using a Betaflight F4 V3S FC, RS2205 2300KV motors, and an ExpressLRS receiver for the RC link. The plan is to stream the FPV feed to my phone instead of using goggles.
 
-**Reference build video:** [YouTube — Build Guide](https://www.youtube.com/watch?v=BoLeQCqns5A&t=210s)
-
-**Use case:** FPV freestyle / racing
+Build reference: [YouTube](https://www.youtube.com/watch?v=BoLeQCqns5A&t=210s)
 
 ---
 
-## Hardware
-
-### Parts List
+## Parts
 
 | Component | Model | Price (INR) |
-|---|---|---|
 | RC Transmitter | FlySky CT6B 2.4GHz 6CH with FS-R6B Receiver | ₹3,464 |
 | Flight Controller | F4 V3S Plus — OSD, 2–6S, 3A BEC, 9V Pad, Betaflight | ₹4,011 |
 | RC Receiver | ExpressLRS RX24T 2.4G | ₹1,375 |
 | Frame | Simplifly MK5 Pro FPV Digital Drone Frame | ₹4,499 |
-| Motors | RS2205 2300KV Brushless DC (×2 CW — Black Cap, x2 CCW — Silver Cap ) | ₹2,864 |
-| Propellers | Durga Enterprises 5-inch 3-Blade — 2 Pair (CW) | ₹349 |
+| Motors | RS2205 2300KV (×2 CW Black Cap + ×2 CCW Silver Cap) | ₹2,864 |
+| Propellers | Durga Enterprises 5-inch 3-Blade — 2 Pair (CW + CCW) | ₹349 |
 | Battery | KP 14.8V 1500mAh 65C LiPo (4S) | ₹2,497 |
 
-**Estimated Total: ~₹19,059**
-
-> **Note:** Camera and video transmitter to be sourced separately — see Mobile FPV Streaming Setup below.
+**Total: ~₹19,059**
 
 ---
 
-## Software & Firmware
+## Getting it flying
 
-- **Flight Controller Firmware:** Betaflight 4.x
-- **Ground Station / Configurator:** [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator)
-- **FPV Streaming (Mobile):** 5.8GHz USB receiver dongle + [Skydroid / Eachine / Skyzone app](https://play.google.com/store) on Android, or a compatible iOS app
-- **OS (companion):** N/A (standalone FC, no companion computer)
-
-### Mobile FPV Streaming Setup
-
-The drone uses an analog or digital 5.8GHz VTX (to be sourced). To view the feed on a phone instead of goggles:
-
-1. Get a **5.8GHz USB video receiver dongle** (e.g. Eachine ROTG01 or Skydroid UVC receiver)
-2. Plug it into your Android phone via OTG adapter
-3. Install **Skydroid** or **Eachine FPV** app
-4. Open the app → auto-detects the USB receiver → live feed appears
-5. Match the channel on the app to the VTX channel set on your transmitter
-
-> **Note:** This approach works best on Android (full UVC/OTG support). iOS has limited USB OTG support — a workaround is using a WiFi-based receiver module instead.
-
----
-
-## Installation & Setup
-
-### 1. Flash Betaflight Firmware
-
-1. Download [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases)
-2. Connect FC via USB
-3. Go to **Firmware Flasher** → select `STM32F405` target
-4. Flash latest stable Betaflight release
-5. Full chip erase before flashing on a new board
+### 1. Flash Betaflight
+```
+- Download [Betaflight Configurator](https://github.com/betaflight/betaflight-configurator/releases)
+- Connect FC via USB, go to Firmware Flasher
+- Target: `STM32F405` — do a full chip erase first on a new board
+- Flash latest stable release
+```
 
 ### 2. Configure the FC
 
 ```
-1. Open Betaflight Configurator → Connect
-2. Ports tab: Enable Serial RX on UART where RX is wired
-3. Configuration tab:
+1. Ports tab → Enable Serial RX on the UART your receiver is wired to
+2. Configuration tab:
    - Receiver Mode: Serial (ELRS)
    - ESC/Motor Protocol: DSHOT300 or DSHOT600
    - Enable: Accelerometer, OSD
-4. Receiver tab: Verify channel map (AETR1234 for FlySky/ELRS)
-5. Motors tab: Test spin direction (no props!)
-6. OSD tab: Set up voltage, RSSI, throttle display
+3. Receiver tab → verify channel map (AETR1234)
+4. Motors tab → test spin direction with no props!
+5. OSD tab → set up voltage, RSSI, throttle
 ```
 
-### 3. Bind the Receiver
+### 3. Bind the receiver
 
 ```
-1. Power the FC with battery (NOT USB alone for bind)
+1. Power the FC from battery (USB alone won't work for binding)
 2. Hold bind button on RX24T while powering on
 3. Put transmitter in bind mode
-4. Solid LED on RX = bound successfully
+4. Solid LED on RX = you're bound
 ```
 
-### 4. ESC Calibration
+### 4. Calibrate ESCs
 
 ```
-1. Remove props
-2. Open Betaflight Configurator → Motors tab
-3. Enable Motor Test → calibrate ESC endpoints
-   OR flash ESCs with BLHeli Suite / BLHeli_32 Suite
+1. Props off
+2. Betaflight → Motors tab → Enable Motor Test
+3. Calibrate endpoints, or flash ESCs via BLHeli Suite
 ```
+
+### 5. Stream FPV to phone
+
+Since I'm not using goggles, the FPV feed goes to my Android phone:
+
+1. Pick up a **5.8GHz USB receiver dongle** (Eachine ROTG01 works well)
+2. Plug into phone via OTG adapter
+3. Install **Skydroid** or **Eachine FPV** app
+4. Open app → it auto-detects the dongle → live feed shows up
+5. Match the channel in the app to whatever channel your VTX is on
+
+> iOS note: OTG support on iPhone is patchy. A WiFi-based receiver module is a better bet if you're on iOS.
 
 ---
 
-## Configuration
+## Betaflight params to set
 
-Key Betaflight parameters to set:
-
-| Parameter | Recommended Value | Description |
-|---|---|---|
-| Motor Protocol | DSHOT300 | For RS2205 ESCs |
-| Min Throttle | 1030 | Prevent motor stall |
+| Parameter | Value | Why |
+| Motor Protocol | DSHOT300 | Works well with RS2205 ESCs |
+| Min Throttle | 1030 | Stops motors from stalling |
 | Max Throttle | 2000 | Full power cap |
-| Failsafe | Drop / Land | Action on RC signal loss |
-| Battery Cells | 4S | 14.8V LiPo |
-| Low Voltage Cutoff | 3.5V/cell → 14.0V total | Protect battery |
+| Failsafe | Drop / Land | What happens when RC signal dies |
+| Battery Cells | 4S | 14.8V pack |
+| Low Voltage Cutoff | 3.5V/cell (14.0V total) | Don't kill the battery |
 
 ---
 
-## Pre-flight Checklist
+## Before every flight
 
-- [ ] Props on tight, correct rotation direction (CW/CCW matched to motor positions)
-- [ ] Battery fully charged (16.8V = 4.2V/cell for 4S)
-- [ ] RC transmitter on, receiver binding confirmed
-- [ ] Betaflight Configurator: motors spin in correct direction
-- [ ] Failsafe tested — RC off → drone disarms / drops as configured
-- [ ] FPV camera feed confirmed on mobile device (USB receiver dongle connected, app open)
-- [ ] Video transmitter channel set, no interference
-- [ ] Flight area clear, people at safe distance
+- [ ] Props tight, CW/CCW matched to the right motors
+- [ ] Battery at full charge (16.8V for 4S)
+- [ ] Transmitter on, receiver linked
+- [ ] Motors spinning the right way in Betaflight (no props)
+- [ ] Failsafe tested
+- [ ] FPV feed showing on phone
+- [ ] Area clear of people
 
 ---
 
-## Usage
+## Arming and flight modes
 
-### Arm & Fly
-
-| Action | Stick Command |
-|---|---|
+| Action | Stick input |
 | Arm | Throttle low + Yaw right (hold 2s) |
 | Disarm | Throttle low + Yaw left (hold 2s) |
 | Angle mode | Switch SA up |
 | Acro mode | Switch SA down |
 
-### Flight Modes (Betaflight)
-
-| Mode | Description |
-|---|---|
-| Angle | Self-levels, beginner-friendly |
-| Acro | Manual, no self-level — full freestyle |
-| Air Mode | Keeps motors spinning at zero throttle |
+| Mode | What it does |
+| Angle | Self-levels — good for learning |
+| Acro | Full manual, no self-level |
+| Air Mode | Motors stay spinning at zero throttle |
 
 ---
 
-## ⚠️ Safety & Warnings
+## ⚠️ Safety
 
-- **Never arm with props on** unless ready for flight outdoors.
-- Keep **minimum 10m clearance** from people during testing.
-- **4S LiPo safety:** Never discharge below 3.5V/cell. Never leave charging unattended. Use a LiPo-safe bag.
-- **Prop strike risk:** 5-inch props at 2300KV can cause serious cuts. Always treat armed drone as dangerous.
-- Fly within **visual line of sight** at all times.
-- Follow **DGCA (India) regulations** for drone operations. Registration required for drones above 250g.
-
----
-
-## Troubleshooting
-
-| Issue | Fix |
-|---|---|
-| Motors not spinning | Check ESC signal wires, re-flash BLHeli, verify motor protocol in Betaflight |
-| Drone flips on takeoff | Props on wrong motors, or motor direction reversed — check in Motors tab |
-| Video feed with noise | Check VTX antenna, try different channel, move away from 2.4GHz interference |
-| No feed on mobile app | Check OTG connection, try different USB cable, ensure app has camera/USB permissions |
-| App doesn't detect receiver | Enable OTG in phone settings, try Skydroid or EV-100 app as alternative |
-| RC not binding | Re-bind RX24T, check UART and Serial RX settings in Betaflight |
-| OSD not showing | Enable OSD in Configuration tab, check camera/FC video wiring |
-| Low battery alarm | Set low voltage warning in Betaflight OSD, check LiPo voltage with multimeter |
+- Don't arm with props on unless you're actually about to fly.
+- Keep at least 10 metres from people when testing.
+- Never leave a LiPo charging unattended. Use a LiPo bag.
+- Never drain below 3.5V/cell — it kills the battery permanently.
+- These props at 2300KV will cut you. Treat an armed drone like it's always about to spin up.
+- Fly within line of sight.
+- DGCA rules apply in India — drones above 250g need to be registered.
 
 ---
 
-## Roadmap
+## Common issues
 
-- [ ] Explore WiFi-based receiver for iOS streaming compatibility
-- [ ] GPS module for Return-to-Home
-- [ ] Custom PID tune for this motor/prop combo
-- [ ] 3D-printed camera mount / FC protection
-- [ ] Telemetry logging via Blackbox
+| Problem | Fix |
+| Motors not spinning | Check ESC signal wires, re-flash BLHeli, check motor protocol in Betaflight |
+| Flips on takeoff | Props on wrong motors or motor direction wrong — fix in Motors tab |
+| Noisy video feed | Check VTX antenna, switch channels, move away from 2.4GHz sources |
+| No feed on phone | Check OTG cable, give the app camera/USB permissions |
+| App not detecting dongle | Enable OTG in phone settings, try Skydroid or EV-100 app |
+| RC not binding | Re-bind RX24T, check UART and Serial RX config in Betaflight |
+| OSD not showing | Enable OSD in Configuration tab, check camera wiring to FC |
+| Low battery alarm | Set warning in Betaflight OSD, verify voltage with multimeter |
 
 ---
 
 ## Contributing
 
-Pull requests welcome! Please open an issue first to discuss changes.
-
-1. Fork the repo
-2. Create a branch: `git checkout -b feature/my-feature`
-3. Commit and push, then open a PR
+Open an issue before submitting a PR. Branch off main, make your changes, open the PR.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE) for details.
-Hardware design files (if any) are shared under CC BY-SA 4.0.
+MIT. Any hardware files are CC BY-SA 4.0.
