@@ -1,0 +1,10 @@
+Category,Component,Model,Quantity,Unit Price (INR),Total Price (INR),Source,Status,Notes
+Frame,Drone Frame,Simplifly MK5 Pro FPV Digital Drone Frame,1,4499,4499,Local/Online,Pending,5-inch digital FPV frame
+Flight Controller,FC + OSD,F4 V3S Plus Flight Control OSD 2-6S 3A BEC 9V Pad Betaflight,1,4011,4011,Robu.in,Pending,Supports Betaflight; STM32F405
+RC System,Transmitter,FlySky CT6B 2.4GHz 6CH Transmitter with FS-R6B Receiver,1,3464,3464,Robu.in,Pending,6-channel 2.4GHz TX+RX combo
+RC System,Receiver,ExpressLRS RX24T 2.4G Receiver,1,1375,1375,Robu.in,Pending,ELRS long-range 2.4GHz RX
+Motors,Brushless Motor,RS2205 2300KV Brushless DC Motor (2x CW Black Cap + 2x CCW Silver Cap),4,716,2864,Robu.in,Pending,2x CW + 2x CCW for correct quadcopter rotation
+Propellers,Propeller,Durga Enterprises 5-inch 3-Blade Propeller 2-Pair (CW + CCW),1,349,349,Amazon,Pending,5in tri-blade; 2x CW + 2x CCW included in pack
+Battery,LiPo Battery,KP Original 14.8V 1500mAh 65C LiPo RC Battery (4S),1,2497,2497,Amazon,Pending,4S 65C; XT60 connector
+,,,,,,,,
+,,Grand Total,,,19059,,,
