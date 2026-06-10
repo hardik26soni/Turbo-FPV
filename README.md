@@ -5,6 +5,8 @@ A 5-inch FPV racing drone I'm building from scratch. Total cost is around ₹19,
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Firmware](https://img.shields.io/badge/Betaflight-4.x-orange)
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+<img width="1200" height="800" alt="f1rwcKgTRfqd5Z6HTIYvw" src="https://github.com/user-attachments/assets/19aac7c0-728d-4573-859c-34b52c2b9556" />
+
 
 ---
 
